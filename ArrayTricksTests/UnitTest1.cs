@@ -8,6 +8,8 @@ namespace ArrayTricks
         private Set _empty;
         private Set _one;
         private Set _two;
+
+        private Set _big;
         public SetUnitTest()
         {
             _empty = new Set();
@@ -17,6 +19,20 @@ namespace ArrayTricks
 
             _two.add("a");
             _two.add("b");
+            
+            _big = new Set(12);
+            _big.add("a");
+            _big.add("b");
+            _big.add("c");
+            _big.add("d");
+            _big.add("e");
+            _big.add("f");
+            _big.add("g");
+            _big.add("h");
+            _big.add("i");
+            _big.add("j");
+            _big.add("k");
+            _big.add("z");
         }
 
         [Fact]
@@ -51,10 +67,29 @@ namespace ArrayTricks
         }
 
         [Fact]
-        public void AddElementStackOverflow()
+        public void AddElementNoStackOverflow()
         {
             _two.add("c");
             Assert.True(_two.Size == 3);
+        }
+
+        [Fact]
+        public void RemoveItemFromEmptyArray()
+        {
+            _empty.remove("a");
+            Assert.True(_empty.isEmpty());
+        }
+
+        [Fact]
+        public void RemoveItem()
+        {
+            _one.remove("a");
+            Assert.True(_one.isEmpty());
+            Assert.True(_one.Size == 0);
+
+            _two.remove("a");
+            Assert.False(_two.isEmpty());
+            Assert.True(_two.Size == 1);
         }
     }
 }

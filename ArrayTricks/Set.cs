@@ -53,6 +53,7 @@ public class Set
                 _set[i] = _set[j];
                 i++;
             }
+            Size--;
         }
     }
 }
