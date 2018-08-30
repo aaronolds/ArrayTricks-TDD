@@ -56,4 +56,18 @@ public class Set
             Size--;
         }
     }
+
+    public void clear()
+    {
+        Array.Clear(_set, 0, Size);;
+        Size = 0;
+    }
+
+    public System.Collections.IEnumerable GetEnumerator()
+    {
+        for (int i = 0; i < Size; i++)
+        {
+            yield return _set[i];
+        }
+    }
 }

@@ -19,7 +19,7 @@ namespace ArrayTricks
 
             _two.add("a");
             _two.add("b");
-            
+
             _big = new Set(12);
             _big.add("a");
             _big.add("b");
@@ -43,12 +43,21 @@ namespace ArrayTricks
         }
 
         [Fact]
+        public void Size()
+        {
+            Assert.True(_empty.Size == 0);
+            Assert.True(_big.Size == 12);
+        }
+
+        [Fact]
         public void AddItemTest()
         {
             Assert.False(_one.isEmpty());
             Assert.False(_two.isEmpty());
-            Assert.True(_one.Size == 1);
-            Assert.True(_two.Size == 2);
+            _one.add("c");
+            Assert.True(_one.Size == 2);
+            _two.add("d");
+            Assert.True(_two.Size == 3);
         }
 
         [Fact]
@@ -90,6 +99,24 @@ namespace ArrayTricks
             _two.remove("a");
             Assert.False(_two.isEmpty());
             Assert.True(_two.Size == 1);
+        }
+
+        [Fact]
+        public void IteratorTest()
+        {
+            var enumerator = _one.GetEnumerator();
+            foreach (var item in enumerator)
+            {
+                Assert.True(item.Equals("a"));
+            }
+        }
+
+        [Fact]
+        public void ClearTest()
+        {
+            _one.clear();
+            Assert.True(_one.Size == 0);
+            Assert.True(_one.isEmpty());
         }
     }
 }
